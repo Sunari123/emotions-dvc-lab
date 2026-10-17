@@ -1,6 +1,6 @@
 # Dataset Version Information
-> Note: MS Azure storage account is used in this project, to avoid unexpected cloud charges.
-> DVC local cache `.dvc/cache` is used to demonstrate full data‑versioning workflow.
+> Note: This project uses the course‑provided MS Azure Blob Storage (account: wut2026, sub‑folder: group29) as DVC remote.
+> SAS authentication token is stored locally inside `.dvc/config.local` and is NOT committed to Git.
 > Raw dataset is never pushed to GitHub; only `.dvc` pointer files are tracked by Git.
 
 ## Dataset
