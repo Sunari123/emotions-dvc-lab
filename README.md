@@ -2,7 +2,7 @@
 MLOps project combining DVC data versioning, MLflow experiment tracking, FastAPI prediction service, Docker containerization and GitHub‑Actions CI/CD.
 
 ## Project branch strategy
-Branching scheme follow the requirement: `feature/* → dev → staging → main`
+Branching scheme follows the requirement: `feature/* → dev → staging → main`
 - `feature/model‑dev`: feature development branch, contains full implementation of this practical work.
 - `dev`: integration branch for merging finished features
 - `staging`: pre‑production environment
@@ -11,7 +11,7 @@ Branching scheme follow the requirement: `feature/* → dev → staging → main
 > Note: For this practical work, all development work is completed on branch `feature/model‑dev`. The branch workflow is documented below.
 
 ## Code lifecycle flow
-`git commit` → GitHub‑Actions CI (lint + pytest + docker build) → merge to `dev` → merge to `staging` → CD builds staging docker image → merge to `main` → CD builds production docker image.
+`git commit` → GitHub‑Actions CI (ruff lint + pytest + docker build) → merge to `dev` → merge to `staging` → CD builds staging docker image → merge to `main` → CD builds production docker image.
 
 ## Pipeline trigger rules
 1. **CI Pipeline (ci.yml)**
@@ -43,8 +43,8 @@ Two model‑related unit‑tests are marked as `skip` on CI.
 ├── DEPLOYMENT.md
 ``` 
 ## Key MLOps components
-1. DVC: dataset version v1 / v2, stored on Azure remote storage, git only track `.dvc` pointer files. Git tags: `v1`, `v2`.
-2. MLflow: 2 experiment runs: baseline model and improved tuned model. Log git‑sha, DVC dataset hash, hyper‑parameters, metrics and model artifacts.
+1. DVC: dataset version v1 / v2, stored on Azure remote storage, Git only tracks `.dvc` pointer files. Git tags: `v1`, `v2`.
+2. MLflow: 2 experiment runs: baseline model and improved tuned model. Logs git‑sha, DVC dataset hash, hyper‑parameters, metrics and model artifacts.
 
 ## How to run locally
 ```powershell
@@ -60,5 +60,5 @@ dvc pull
 uvicorn app.main:app --reload --port 8000
 
 # run unit test
-pytest tests/ -v0
+pytest tests/ -v
 ```
