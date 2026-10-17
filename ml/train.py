@@ -4,7 +4,7 @@ import joblib
 import mlflow
 import yaml
 import argparse
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import SGDRegressor
 from sklearn.metrics import mean_squared_error
 
 from ml.data_pipeline import load_raw_dataset, split_features_label
@@ -24,7 +24,6 @@ def run_training(config_path):
     with open(config_path, "r", encoding="utf8") as f:
         cfg = yaml.safe_load(f)
 
-    # 放到with外面，读取完配置再设置mlflow
     mlflow.set_tracking_uri("./mlruns")
     mlflow.set_experiment("emotions_mlops")
 
@@ -36,7 +35,12 @@ def run_training(config_path):
         mlflow.log_param("dvc_pointer_hash", get_dvc_file_hash())
         mlflow.log_params(cfg)
 
-        model = LinearRegression()
+        # 这里就是关键改动：读取cfg里面超参传给SGD
+        model = SGDRegressor(
+            max_iter=cfg["max_iter"],
+            eta0=cfg["eta0"],
+            random_state=42
+        )
         model.fit(X, y)
         y_pred = model.predict(X)
         mse = mean_squared_error(y, y_pred)
