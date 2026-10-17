@@ -1,0 +1,28 @@
+name: CD Pipeline
+
+on:
+  push:
+    branches: [ staging, main ]
+
+jobs:
+  build-deploy-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Prepare environment .env from GitHub Secrets
+        run: |
+          if [[ "${{ github.ref_name }}" == "staging" ]]; then
+            echo "${{ secrets.STAGING_ENV }}" > .env
+          elif [[ "${{ github.ref_name }}" == "main" ]]; then
+            echo "${{ secrets.PROD_ENV }}" > .env
+          fi
+
+      - name: Build production docker image
+        run: |
+          if [[ "${{ github.ref_name }}" == "staging" ]]; then
+            docker build -t ml-api:staging .
+          else
+            docker build -t ml-api:prod .
+          fi
