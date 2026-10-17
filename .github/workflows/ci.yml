@@ -27,8 +27,8 @@ jobs:
           pip install -r requirements-dev.txt
           pip install httpx
 
-      # - name: Lint with ruff static analysis
-      #   run: ruff check app ml tests
+       - name: Lint with ruff static analysis
+         run: ruff check app ml tests --ignore001
 
       - name: Run pytest test suite
         run: >
