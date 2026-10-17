@@ -1,0 +1,3 @@
+run_name: baseline_exp
+max_iter: 100
+desc: baseline demo run

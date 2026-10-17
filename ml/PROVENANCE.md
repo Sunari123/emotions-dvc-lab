@@ -2,5 +2,11 @@
 
 Goal: keep trace between: Git commit → DVC dataset version → trained model artifact.
 
-After training completes, fill: git\_sha, dataset\_tag, model filename.
+
+
+\- Git SHA: f1459d3501e7815ff7ddadded92d625e57b9a5c8
+
+\- Dataset tag: v2
+
+\- Model file: ml/registry/model.joblib
 
