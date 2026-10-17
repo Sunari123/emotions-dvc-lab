@@ -1,1 +1,11 @@
-/data
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+mlruns/
+*.joblib
+.dvc/cache/
+.DS_Store
+*.tmp

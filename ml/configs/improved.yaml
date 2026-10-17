@@ -1,0 +1,3 @@
+run_name: run_improved
+max_iter: 180
+eta0: 0.03
