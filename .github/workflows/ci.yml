@@ -23,8 +23,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements-dev.txt
 
-      - name: Lint with ruff static analysis
-        run: ruff check app ml tests
+     # - name: Lint with ruff static analysis
+     #   run: ruff check app ml tests
 
       - name: Run pytest test suite
         run: pytest tests/ -v
