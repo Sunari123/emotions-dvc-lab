@@ -1,6 +1,5 @@
 import joblib
 from pathlib import Path
-import pytest
 
 # @pytest.mark.skip(reason="CI无DVC凭证，无模型文件")
 def test_model_exists():
